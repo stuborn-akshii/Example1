@@ -1,0 +1,18 @@
+pipeline {
+    agent any 
+    environment {
+        XAMPP_HOME = "C:/xampp/htdocs"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'your repo link'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat "xcopy /Y /S *.html C:\\xampp\\htdocs\\"
+            }
+        }
+    }
+}
